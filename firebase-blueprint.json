@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "UserAccountProfile": {
+      "title": "User Account Profile",
+      "description": "Authenticated user account metadata stored privately per user.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth user ID."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 120,
+          "description": "Display name shown in Settings."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "description": "Account email address if present."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "maxLength": 32,
+          "description": "Verified mobile phone number in E.164 format if present."
+        },
+        "providerId": {
+          "type": "string",
+          "enum": ["google.com", "password", "phone"],
+          "description": "Primary authentication provider."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when account record was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of the last account login/update."
+        }
+      },
+      "required": ["uid", "providerId", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserAccountProfile" },
+      "description": "Private owner-only user account profiles."
+    }
+  }
+}

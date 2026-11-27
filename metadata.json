@@ -1,0 +1,6 @@
+{
+  "name": "SmartNotesPro",
+  "description": "Offline-first smart notes workspace with live inline math evaluation, rich formatting, CSV and PDF backup, trash recovery, and PIN or fingerprint vault security.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
